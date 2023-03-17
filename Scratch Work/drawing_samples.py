@@ -35,7 +35,13 @@ arcade.draw_ellipse_filled(200, 370, 60, 80, arcade.csscolor.DARK_GREEN)
 # arc is centered at (300, 340) with a width of 60 and height of 100.
 #The starting angle is 0, and ending angle is 180.
 arcade.draw_rectangle_filled(300, 320, 20, 60, arcade.csscolor.SIENNA)
-arcade.draw_arc_filled(300, 340, 60, 100, arcade.csscolor.DARK_GREEN, 0, 180)
+arcade.draw_arc_filled(center_x = 300,
+                       center_y = 340,
+                       width = 60,
+                       height = 100,
+                       color = arcade.csscolor.DARK_GREEN,
+                        start_angle = 0,
+                        end_angle = 180)
 
 #another tree, with a trunk and triangle for the top
 #triangle is made of these points
