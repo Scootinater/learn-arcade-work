@@ -8,6 +8,8 @@ SPRITE_SCALING = 0.5
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
+
+
 class Coin(arcade.Sprite):
     def __init__(self, filename, sprite_scaling):
         ''' Constructor. '''
@@ -30,13 +32,15 @@ class Coin(arcade.Sprite):
     def update(self):
         ''' update the ball's position '''
         # calculate a new x,y
-        self.center_x = self.circle_radius * math.sin(self.circle_angle) \
-        + self.circle_center_x
-        self.circle_center_y = self.circle_radius * math.cos(self.circle_angle) \
-        + self.circle_center_y
+        self.center_x = self.circle_radius * math.sin(self.circle_angle) + self.circle_center_x
+        self.center_y = self.circle_radius * math.cos(self.circle_angle) + self.circle_center_y
 
         # increase the angle in prep for the next round
         self.circle_angle += self.circle_speed
+
+        self.angle += 1
+        if self.angle > 359:
+            self.angle -= 360
 
 class MyGame(arcade.Window):
     ''' Main application class '''
@@ -50,6 +54,7 @@ class MyGame(arcade.Window):
         # set up the player
         self.score = 0
         self.player_sprite = None
+        
 
     def start_new_game(self):
         ''' Set up the game and initialize the variables '''
@@ -63,8 +68,9 @@ class MyGame(arcade.Window):
         # character image from kenney.nl
         self.player_sprite = arcade.Sprite('character.png', 0.10)
         self.player_sprite.center_x = 50
-        self.player_sprite.center_y = 70
+        self.player_sprite.center_y = 70   
         self.player_list.append(self.player_sprite)
+        # self.player_sprite.angle = 180 # flips the character 180
 
         for i in range(50):
             # create the coin instance
@@ -108,7 +114,7 @@ class MyGame(arcade.Window):
 
     def update(self, delta_time):
         ''' Movement and game logic '''
-
+        
         # call update on all sprites (The sprites don't do much in this
         # example though.)
         self.coin_list.update()
