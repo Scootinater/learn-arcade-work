@@ -26,7 +26,7 @@ def save_high_score(new_high_score):
     try:
         # write the file to disk
         high_score_file = open('high_score.txt', 'w')
-        high_score_file.write(str(new_high_score))100
+        high_score_file.write(str(new_high_score))
         high_score_file.close()
     except IOError:
         # Hm, can't write it
